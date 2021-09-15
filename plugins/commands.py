@@ -19,14 +19,29 @@
 #LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #SOFTWARE.
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram import Client, filters
 from utils import USERNAME, mp
 from config import Config
 U=USERNAME
 CHAT=Config.CHAT
 msg=Config.msg
-HOME_TEXT = "<b> Hey I Am Assistant Of @KhiladiKing45 (https://telegra.ph/file/c639a3b15fed410b820f4.jpg). </b>"
+
+@Client.on_message(other_filters2)
+async def start(_, message: Message):
+    await message.reply_text(
+        f"""**Hey, I am The Assitant Of @KHILADIKING45 🥳 !**
+        """,
+        reply_markup=InlineKeyboardMarkup(
+           [
+              InlineKeyboardButton('Tamil Chat🍒 ', url='https://t.me/Tamil_Chat_Empire'),
+              InlineKeyboardButton('Facebook🎻', url='https://www.facebook.com/khiladi.kishoth.3'),
+           ],
+           [
+              InlineKeyboardButton('Instagram❄️', url='https://www.instagram.com/khiladiking45/'),
+        
+           ]
+    )
 HELP = """
 
 **Common Commands**:
