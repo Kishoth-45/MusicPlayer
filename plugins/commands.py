@@ -3,25 +3,19 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
 
 
-@Client.on_message(
-    filters.command("start")
-    & filters.private
-    & ~ filters.edited
-)
-async def start_(client: Client, message: Message):
-    await message.reply_text(
-        
-        f"""<b>Hey {message.from_user.first_name}!
-       \n I Am The Assitant of @KHILADIKING45 ✨🍒[https://telegra.ph/file/c639a3b15fed410b820f4.jpg].
-       </b>""",
+@Client.on_message(filters.command(['start']))
+def start(client, message):
+    AnjelBots = f'🍁 𝗛𝗲𝗹𝗹𝗼 @{message.from_user.username}\n\n I Am The Assistant Of @KHILADIKING45 [🎻](https://telegra.ph/file/c639a3b15fed410b820f4.jpg)'
+    message.reply_text(
+        text=AnjelBots, 
+        quote=False,
         reply_markup=InlineKeyboardMarkup(
-            [
+           [
               InlineKeyboardButton('Tamil Chat🍒 ', url='https://t.me/Tamil_Chat_Empire'),
               InlineKeyboardButton('Facebook🎻', url='https://www.facebook.com/khiladi.kishoth.3'),
            ],
            [
-              InlineKeyboardButton('Instagram❄️', url='https://www.instagram.com/khiladiking45/')
-        
+              InlineKeyboardButton('Instagram❄️', url='https://www.instagram.com/khiladiking45/'),
            ]
         )
     )
