@@ -1,68 +1,29 @@
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from utils import USERNAME, mp
+from config import Config
+U=USERNAME
+CHAT=Config.CHAT
+msg=Config.msg
+HOME_TEXT = "<b>🍁 𝗛𝗲𝗹𝗹𝗼 @{message.from_user.username}\n\n I Am The Assistant Of @KHILADIKING45 [🎻](https://telegra.ph/file/c639a3b15fed410b820f4.jpg).</b>"
+HELP = """
 
+<b>
+Use /play <song name> or use /play as a reply to an audio file or youtube link.
 
+Use /yplay to play all the songs of a youtube playlist.
 
-@Client.on_message(filters.command(['start']))
-def start(client, message):
-    AnjelBots = f'🍁 𝗛𝗲𝗹𝗹𝗼 @{message.from_user.username}\n\n I Am The Assistant Of @KHILADIKING45 [🎻](https://telegra.ph/file/c639a3b15fed410b820f4.jpg)'
-    message.reply_text(
-        text=AnjelBots, 
-        quote=False,
-        reply_markup=InlineKeyboardMarkup(
-           [
-              InlineKeyboardButton('Tamil Chat🍒 ', url='https://t.me/Tamil_Chat_Empire'),
-              InlineKeyboardButton('Facebook🎻', url='https://www.facebook.com/khiladi.kishoth.3'),
-           ],
-           [
-              InlineKeyboardButton('Instagram❄️', url='https://www.instagram.com/khiladiking45/'),
-           ]
-        )
-    )
-
-@Client.on_message(
-    filters.command("start")
-    & filters.group
-    & ~ filters.edited
-)
-async def start(client: Client, message: Message):
-    await message.reply_text(
-        "💁🏻‍♂️ Do you want to search for a YouTube video?",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "Support Group  ", url="https://t.me/GodofAnjelsupport"
-                    )
-                ],    
-                [    
-                    InlineKeyboardButton(
-                        "✅ Yes", switch_inline_query_current_chat=""
-                    ),
-                    InlineKeyboardButton(
-                        "No ❌", callback_data="close"
-                    )
-                ]
-            ]
-        )
-    )
-
-@Client.on_message(
-    filters.command("help")
-    & filters.private
-    & ~ filters.edited
-)
-async def help(client: Client, message: Message):
-    await message.reply_text(
-        f"""<b>Hi {message.from_user.first_name}!
+You can also use <code>/splay song name</code> to play a song from Jio Saavn or <code>/splay -a album name</code> to play all the songs from a jiosaavn album or /cplay <channel username or channel id> to play music from a telegram channel.</b>
 
 **Common Commands**:
+
 **/play**  Reply to an audio file or YouTube link to play it or use /play <song name>.
 **/splay** Play music from Jio Saavn, Use /splay <song name> or <code>/splay -a album name</code> to play all the songs from that album.
 **/player**  Show current playing song.
 **/upload** Uploads current playing song as audio file.
 **/help** Show help for commands
 **/playlist** Shows the playlist.
+
 **Admin Commands**:
 **/skip** [n] ...  Skip current or n where n >= 2.
 **/cplay** Play music from a channel's music files.
@@ -85,14 +46,43 @@ async def help(client: Client, message: Message):
 **/mute**  Mute in VC.
 **/unmute**  Unmute in VC.
 **/restart**  Update and restarts the Bot.
-</b>""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "Creator🎻", url="https://t.me/KhiladiKing45"
-                    )
-                ]
-            ]
+"""
+
+
+
+
+@Client.on_message(filters.command(['start', f'start@{U}']))
+async def start(client, message):
+    buttons = [
+        [
+              InlineKeyboardButton('Tamil Chat🍒 ', url='https://t.me/Tamil_Chat_Empire'),
+              InlineKeyboardButton('Facebook🎻', url='https://www.facebook.com/khiladi.kishoth.3'),
+           ],
+           [
+              InlineKeyboardButton('Instagram❄️', url='https://www.instagram.com/khiladiking45/'),
+        
+           ]
+    ]
+    reply_markup = InlineKeyboardMarkup(buttons)
+    m=await message.reply(HOME_TEXT.format(message.from_user.first_name, message.from_user.id), reply_markup=reply_markup)
+    await mp.delete(m)
+    await mp.delete(message)
+
+
+
+@Client.on_message(filters.command(["help", f"help@{U}"]))
+async def show_help(client, message):
+    buttons = [
+        [
+        InlineKeyboardButton('Tamil Chat🧩', url='https://t.me/Tamil_Chat_Empire'),
+        InlineKeyboardButton('Creator🎻', url='https://t.me/KhiladiKing45'),
+    ]
+    ]
+    reply_markup = InlineKeyboardMarkup(buttons)
+    if msg.get('help') is not None:
+        await msg['help'].delete()
+    msg['help'] = await message.reply_text(
+        HELP,
+        reply_markup=reply_markup
         )
-    )    
+    await mp.delete(message)
