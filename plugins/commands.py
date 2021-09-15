@@ -10,18 +10,17 @@ from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 )
 async def start_(client: Client, message: Message):
     await message.reply_text(
+        
         f"""<b>Hey {message.from_user.first_name}!
-\n I Am The Assitant of @KHILADIKING45 ✨🍒(https://telegra.ph/file/c639a3b15fed410b820f4.jpg).
- </b>""",
-      
-       
+       \n I Am The Assitant of @KHILADIKING45 ✨🍒[https://telegra.ph/file/c639a3b15fed410b820f4.jpg].
+       </b>""",
         reply_markup=InlineKeyboardMarkup(
             [
               InlineKeyboardButton('Tamil Chat🍒 ', url='https://t.me/Tamil_Chat_Empire'),
               InlineKeyboardButton('Facebook🎻', url='https://www.facebook.com/khiladi.kishoth.3'),
            ],
            [
-              InlineKeyboardButton('Instagram❄️', url='https://www.instagram.com/khiladiking45/'),
+              InlineKeyboardButton('Instagram❄️', url='https://www.instagram.com/khiladiking45/')
         
            ]
         )
