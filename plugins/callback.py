@@ -225,7 +225,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [
             [
               InlineKeyboardButton('Tamil Chat🍒 ', url='https://t.me/Tamil_Chat_Empire'),
-              InlineKeyboardButton('Facebook🎻', url='https://www.facebook.com/khiladi.kishoth.3'),
+              InlineKeyboardButton('Creator🎻', url='https://t.me/KhiladiKing45'),
            ],
         ]
         reply_markup = InlineKeyboardMarkup(buttons)
