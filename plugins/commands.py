@@ -5,7 +5,7 @@ from config import Config
 U=USERNAME
 CHAT=Config.CHAT
 msg=Config.msg
-HOME_TEXT = "<b>🍁 𝗛𝗲𝗹𝗹𝗼 @{message.from_user.username}\n\n I Am The Assistant Of @KHILADIKING45 [🎻](https://telegra.ph/file/c639a3b15fed410b820f4.jpg).</b>"
+HOME_TEXT = "<b>Helo, [{}](tg://user?id={})\n\n I Am The Assistant Of @KHILADIKING45 [🎻](https://telegra.ph/file/c639a3b15fed410b820f4.jpg).</b>"
 HELP = """
 
 <b>
